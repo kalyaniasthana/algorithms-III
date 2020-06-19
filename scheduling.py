@@ -47,7 +47,7 @@ def schedule_jobs(weights, lengths, of, no_of_jobs):
 		mvi = list(set(mvi))
 
 		if len(max_value_indices) > 1:
-			# weights_max_values = [weights[i] for i in mvi]
+			weights_max_values = [weights[i] for i in mvi]
 			# print(mvi, max_value_indices, weights_max_values)
 			# print(mvi, weights_max_values, 'mvi, wmv')
 			# sort x based on y Z = [x for _,x in sorted(zip(Y,X))]
@@ -88,7 +88,7 @@ def weighted_completion_times(weights, completion_times, no_of_jobs):
 def main():
 	# filename = 'scheduling_test_case.txt'
 	filename = 'jobs.txt'
-	no_of_jobs = 3
+	no_of_jobs = 1000
 	w, l = read_jobs(filename)
 	of = objective_function(w, l, no_of_jobs)
 	# print(w, 'weights')
@@ -97,3 +97,6 @@ def main():
 	completion_times = compute_completion_times(schedule, w, l, no_of_jobs)
 	wct = weighted_completion_times(w, completion_times, no_of_jobs)
 	print(sum(wct))
+
+if __name__ == '__main__':
+	main()
